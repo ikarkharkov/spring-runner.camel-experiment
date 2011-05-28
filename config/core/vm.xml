@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+A spring config for Camel Route example.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+  <camel:camelContext>
+	<!-- Use VM to send msg between routes -->
+    <camel:route id="route1">
+    	<camel:from uri="timer://myTimer?period=300&amp;delay=3000"/>
+		<camel:to uri="log://route1Output"/>
+		<camel:to uri="vm://route1Q"/>
+    </camel:route>
+	<camel:route id="route2">
+    	<camel:from uri="vm://route1Q"/>
+		<camel:to uri="log://route2Output"/>
+		<camel:to uri="vm://route2Q"/>
+    </camel:route>
+	<camel:route id="route3">
+    	<camel:from uri="vm://route2Q"/>
+		<camel:to uri="log://route3Output"/>
+    </camel:route>
+  </camel:camelContext>
+
+</beans>

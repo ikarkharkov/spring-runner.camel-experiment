@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+A spring config for Camel Route example.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+  <camel:camelContext>
+	<!-- Sending few pausing timer msg into a logger. 
+    <camel:route>
+    	<camel:from uri="timer://myTimer?period=3000&amp;delay=3000"/>
+		<camel:to uri="log://output"/>
+    </camel:route>
+	-->
+	
+	<!-- Rapid fire of msgs. -->
+    <camel:route>
+    	<camel:from uri="timer://myTimer?period=100&amp;delay=3000"/>
+		<camel:to uri="log://output"/>
+    </camel:route>
+	
+  </camel:camelContext>
+
+</beans>
