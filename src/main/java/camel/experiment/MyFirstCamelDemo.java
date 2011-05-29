@@ -22,7 +22,7 @@ public class MyFirstCamelDemo {
 		final CamelContext context = new DefaultCamelContext();
 		context.addRoutes(new RouteBuilder() {
 		    public void configure() {
-		        from("file://target/file-input").process(new Processor() {
+		        from("file://target/input-files").process(new Processor() {
 		            public void process(Exchange e) {
 		            	logger.info("Received exchange message: " + e.getIn());
 		            }

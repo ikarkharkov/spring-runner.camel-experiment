@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+A spring config for Camel Route example.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+  	<camel:camelContext>
+  	
+		<!-- A simple ordering system pipeline route
+	    <camel:route>
+	    	<camel:from uri="file://data/ordering/input-orders"/>
+			<camel:to uri="log://camel.experiment.ordering"/>
+			<camel:to uri="bean://orderService?method=validateOrder"/>
+			<camel:to uri="bean://orderService?method=placeOrder"/>
+			<camel:to uri="bean://orderService?method=sendEmailConfirmation"/>
+	    </camel:route>
+		-->	  	
+	  	<camel:route>
+	    	<camel:from uri="file://data/ordering/input-orders"/>
+	    	<camel:multicast>
+				<camel:to uri="log://camel.experiment.ordering"/>
+				<camel:pipeline>
+					<camel:to uri="bean://orderService?method=validateOrder"/>
+					<camel:to uri="bean://orderService?method=placeOrder"/>
+					<camel:to uri="bean://orderService?method=sendEmailConfirmation"/>
+				</camel:pipeline>
+			</camel:multicast>
+	    </camel:route>
+		
+  	</camel:camelContext>
+  
+  	<!-- Ordering service
+  	<bean id="orderService" class="camel.experiment.ordering.OrderService">
+  	</bean>
+  	-->
+	<bean id="orderService" class="camel.experiment.ordering.DummyOrderService">
+ 	</bean>
+  
+</beans>

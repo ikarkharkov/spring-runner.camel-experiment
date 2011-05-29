@@ -9,8 +9,8 @@ A spring config for Camel Route example.
 	http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-  <camel:camelContext>
-    <camel:package>camel.experiment.route</camel:package>
-  </camel:camelContext>
+	<camel:camelContext>
+		<camel:package>camel.experiment.route</camel:package>
+	</camel:camelContext>
 
 </beans>
