@@ -19,7 +19,7 @@ public class OrderService {
 		logger.info("Order " + order.getId() + " has been added.");
 	}
 	
-	public void sendEmailConfirmation(Order order) {
+	public void sendConfirmationEmail(Order order) {
 		logger.info("Email confirmation for order " + order.getId() + " has been sent.");
 	}
 }

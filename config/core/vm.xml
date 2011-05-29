@@ -12,18 +12,18 @@ A spring config for Camel Route example.
 	<camel:camelContext>
 		<!-- Use VM to send msg between routes -->
 	   	<camel:route id="route1">
-		   	<camel:from uri="timer://myTimer?period=300&amp;delay=3000"/>
-			<camel:to uri="log://route1Output"/>
-			<camel:to uri="vm://route1Q"/>
+		   	<camel:from uri="timer:myTimer?period=300&amp;delay=3000"/>
+			<camel:to uri="log:camel.experiment.core.Route1Timer"/>
+			<camel:to uri="vm:route1Q"/>
 	  	</camel:route>
 		<camel:route id="route2">
-		   	<camel:from uri="vm://route1Q"/>
-			<camel:to uri="log://route2Output"/>
-			<camel:to uri="vm://route2Q"/>
+		   	<camel:from uri="vm:route1Q"/>
+			<camel:to uri="log:camel.experiment.core.Route1Queue"/>
+			<camel:to uri="vm:route2Q"/>
 		</camel:route>
 		<camel:route id="route3">
-		   	<camel:from uri="vm://route2Q"/>
-			<camel:to uri="log://route3Output"/>
+		   	<camel:from uri="vm:route2Q"/>
+			<camel:to uri="log:camel.experiment.core.Route2Queue"/>
 	   </camel:route>
 	</camel:camelContext>
 

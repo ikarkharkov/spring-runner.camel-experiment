@@ -19,7 +19,7 @@ public class DummyOrderService {
 		logger.info("Order '" + order + "' has been added.");
 	}
 	
-	public void sendEmailConfirmation(String order) {
+	public void sendConfirmationEmail(String order) {
 		logger.info("Email confirmation for order '" + order + "' has been sent.");
 	}
 }

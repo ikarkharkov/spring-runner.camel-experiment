@@ -14,20 +14,20 @@ A spring config for Camel Route example.
 		<!-- A simple ordering system pipeline route
 	    <camel:route>
 	    	<camel:from uri="file://data/ordering/input-orders"/>
-			<camel:to uri="log://camel.experiment.ordering"/>
-			<camel:to uri="bean://orderService?method=validateOrder"/>
-			<camel:to uri="bean://orderService?method=placeOrder"/>
-			<camel:to uri="bean://orderService?method=sendEmailConfirmation"/>
+			<camel:to uri="log:camel.experiment.ordering.Order"/>
+			<camel:to uri="bean:orderService?method=validateOrder"/>
+			<camel:to uri="bean:orderService?method=placeOrder"/>
+			<camel:to uri="bean:orderService?method=sendConfirmationEmail"/>
 	    </camel:route>
 		-->	  	
 	  	<camel:route>
 	    	<camel:from uri="file://data/ordering/input-orders"/>
 	    	<camel:multicast>
-				<camel:to uri="log://camel.experiment.ordering"/>
+				<camel:to uri="log:camel.experiment.ordering.Order"/>
 				<camel:pipeline>
-					<camel:to uri="bean://orderService?method=validateOrder"/>
-					<camel:to uri="bean://orderService?method=placeOrder"/>
-					<camel:to uri="bean://orderService?method=sendEmailConfirmation"/>
+					<camel:to uri="bean:orderService?method=validateOrder"/>
+					<camel:to uri="bean:orderService?method=placeOrder"/>
+					<camel:to uri="bean:orderService?method=sendConfirmationEmail"/>
 				</camel:pipeline>
 			</camel:multicast>
 	    </camel:route>

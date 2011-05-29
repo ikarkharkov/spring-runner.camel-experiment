@@ -12,15 +12,15 @@ A spring config for Camel Route example.
 	<camel:camelContext>
 		<!-- Sending few pausing timer msg into a logger. 
 		<camel:route>
-			<camel:from uri="timer://myTimer?period=3000&amp;delay=3000"/>
-			<camel:to uri="log://output"/>
+			<camel:from uri="timer:myTimer?period=3000&amp;delay=3000"/>
+			<camel:to uri="log:camel.experiment.core.Timer"/>
 		</camel:route>
 		-->
 	
 		<!-- Rapid fire of msgs. -->
 		<camel:route>
-			<camel:from uri="timer://myTimer?period=100&amp;delay=3000"/>
-			<camel:to uri="log://output"/>
+			<camel:from uri="timer:myTimer?period=100&amp;delay=3000"/>
+			<camel:to uri="log:camel.experiment.core.Timer"/>
 		</camel:route>	
 	</camel:camelContext>
 
